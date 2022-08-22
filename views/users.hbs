@@ -1,0 +1,67 @@
+<div class="bg-dark p-5 rounded mt-3">
+    <h1>Listar usuários</h1>
+    {{#if table}}
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome Completo</th>
+                <th scope="col">Email</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-4 d-flex">
+                            <form action="/list-edit" method="post">
+                                <input type="hidden" value="{{id}}" name="id" />
+                                <button class="w-100 btn btn-info">Editar</button>
+                            </form>
+                            <div class="col-2">
+                                <button data-bs-toggle="modal" data-bs-target="#deleteModal_{{id}}"
+                                    class="btn btn-danger ms-2">Deletar</button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- MODAL -->
+            <div class="modal fade" id="deleteModal_{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Deletar usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-danger fw-bold">
+                            Tem certeza que deseja deletar o usuário {{name}}?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/del" method="post">
+                                <input type="hidden" name="id" value="{{id}}">
+                                <button type="submit" class="btn btn-danger">Sim, tenho certeza.</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="card mt-4">
+        <div class="card-body">
+            Não há dados cadastrados!
+        </div>
+    </div>
+
+    {{/if}}
+</div>
