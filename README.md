@@ -1,4 +1,4 @@
-# CRUD-Noje.js
+# CRUD-Node.js
 Sistema CRUD desenvolvido com Node.JS, Express, MySQL, Handlebars e Bootstrap.
 
 
